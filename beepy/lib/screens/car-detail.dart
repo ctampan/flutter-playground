@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/app-bar.dart';
+
 class CarDetailPage extends StatefulWidget {
   const CarDetailPage({Key? key, required this.title}) : super(key: key);
 
@@ -22,39 +24,17 @@ class _CarDetailState extends State<CarDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        title: Text(
-          widget.title,
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
-        ),
-        centerTitle: true,
-        foregroundColor: Colors.black,
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios,
-            color: Colors.black,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        actions: <Widget>[
-          CircleAvatar(
-            backgroundColor: const Color(0xFF2A3640),
-            child: Image.asset("assets/images/Beep_Beep_Avatar.png"),
-          )
-        ],
-      ),
+      appBar: appBarWidget(context, widget.title),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Padding(
-                padding: const EdgeInsets.only(bottom: 70),
+                padding: const EdgeInsets.only(bottom: 50),
                 child:
                     Image.asset("assets/images/Beep_Beep_Medium_Vehicle.png")),
             SizedBox(
-                height: MediaQuery.of(context).size.height * 0.37,
+                height: MediaQuery.of(context).size.height * 0.42,
                 child: Container(
                   decoration: const BoxDecoration(
                       color: Colors.lightBlueAccent,
@@ -73,20 +53,24 @@ class _CarDetailState extends State<CarDetailPage> {
                             children: <Widget>[
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const <Widget>[
+                                children: <Widget>[
                                   Text(
                                     "Sport Car",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 39,
-                                        fontWeight: FontWeight.w800),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineMedium
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white),
                                   ),
                                   Text(
                                     "\$55/day",
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 19,
-                                        fontWeight: FontWeight.w400),
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .titleMedium
+                                        ?.copyWith(
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.white),
                                   )
                                 ],
                               ),
@@ -99,7 +83,7 @@ class _CarDetailState extends State<CarDetailPage> {
                                       if (_isStarred)
                                         const Icon(
                                           Icons.star_rounded,
-                                          color: const Color(0xFFFFD644),
+                                          color: Color(0xFFFFD644),
                                           size: 40,
                                         ),
                                       const Icon(
@@ -111,30 +95,34 @@ class _CarDetailState extends State<CarDetailPage> {
                                   ))
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 30,
                           ),
                           Text(
                             "Description",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 19,
-                                fontWeight: FontWeight.w800),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleLarge
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.white),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Text(
                             "Wanna ride the coolest sport car in the world?",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.w400),
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    color: Colors.white),
                           ),
-                          Spacer(),
+                          const Spacer(),
                           SizedBox(
                               width: MediaQuery.of(context).size.width,
-                              height: 50,
+                              height: 57,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
@@ -143,9 +131,14 @@ class _CarDetailState extends State<CarDetailPage> {
                                   onPrimary: Colors.black,
                                 ),
                                 onPressed: () {},
-                                child: const Text(
+                                child: Text(
                                   'Book Now',
-                                  style: TextStyle(fontSize: 15),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleMedium
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black),
                                 ),
                               ))
                         ],
