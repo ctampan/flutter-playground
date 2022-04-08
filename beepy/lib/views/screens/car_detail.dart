@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/app-bar.dart';
+import '../widgets/app_bar.dart';
 
 class CarDetailPage extends StatefulWidget {
   const CarDetailPage({Key? key, required this.title}) : super(key: key);

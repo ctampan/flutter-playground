@@ -1,5 +1,5 @@
-import 'package:beepy/screens/car-detail.dart';
-import 'package:beepy/screens/home.dart';
+import 'package:beepy/views/screens/car_detail.dart';
+import 'package:beepy/views/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
