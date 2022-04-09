@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodienator/views/screens/sign_up.dart';
 import 'package:foodienator/views/screens/start_screen.dart';
 
 import '../constants/foodienator_colors.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
           })),
       initialRoute: '/startScreen',
       routes: <String, WidgetBuilder>{
-        '/startScreen': (context) => StartScreen(),
+        '/startScreen': (context) => const StartScreen(),
+        '/signUp': (context) => const SignUpScreen(),
       },
     );
   }

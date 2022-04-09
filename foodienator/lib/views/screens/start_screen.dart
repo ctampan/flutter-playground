@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StartScreen extends StatelessWidget {
+  const StartScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +73,8 @@ class StartScreen extends StatelessWidget {
                       height: 60,
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () =>
+                            Navigator.pushNamed(context, '/signUp'),
                         child: const Text(
                           'Register',
                           style: TextStyle(
