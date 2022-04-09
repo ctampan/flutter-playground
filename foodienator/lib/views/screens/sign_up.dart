@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:foodienator/views/widgets/iconic_text_field.dart';
 
@@ -54,7 +52,7 @@ class SignUpScreen extends StatelessWidget {
               ButtonOne(
                 text: 'Register',
                 onButtonPressed: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(context, '/registrationComplete');
                 },
               ),
             ],
