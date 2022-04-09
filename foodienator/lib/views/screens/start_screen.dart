@@ -50,7 +50,9 @@ class StartScreen extends StatelessWidget {
                       height: 60,
                       width: 150,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/login');
+                        },
                         child: const Text(
                           'Sign In',
                           style: TextStyle(

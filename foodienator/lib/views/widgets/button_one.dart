@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ButtonOne extends StatelessWidget {
-  const ButtonOne({Key? key, required this.text, required void Function()? this.onButtonPressed}) : super(key: key);
+  const ButtonOne({Key? key, required this.text, required this.onButtonPressed}) : super(key: key);
 
   final String text;
   final Function()? onButtonPressed;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodienator/views/screens/login.dart';
 import 'package:foodienator/views/screens/registration_complete.dart';
 import 'package:foodienator/views/screens/sign_up.dart';
 import 'package:foodienator/views/screens/start_screen.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         '/signUp': (context) => const SignUpScreen(),
         '/registrationComplete': (context) =>
             const RegistrationCompleteScreen(),
+        '/login': (context) => const LoginScreen(),
       },
     );
   }

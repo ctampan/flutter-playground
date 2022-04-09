@@ -4,16 +4,22 @@ import 'package:validators/validators.dart';
 enum FieldType { text, email, password }
 
 class IconicTextField extends StatefulWidget {
-  const IconicTextField(
-      {Key? key,
-      required this.labelText,
-      required this.prefixIcon,
-      required this.type})
-      : super(key: key);
+  const IconicTextField({
+    Key? key,
+    required this.labelText,
+    required this.prefixIcon,
+    required this.type,
+    this.width = 0.8,
+    this.textScaling = 1,
+    this.iconScaling = 1,
+  }) : super(key: key);
 
   final String labelText;
   final IconData prefixIcon;
   final FieldType type;
+  final double width;
+  final double textScaling;
+  final double iconScaling;
 
   @override
   State<StatefulWidget> createState() => _IconicTextFieldState();
@@ -35,7 +41,7 @@ class _IconicTextFieldState extends State<IconicTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.8,
+        width: MediaQuery.of(context).size.width * widget.width,
         child: Focus(
             onFocusChange: (hasFocus) {
               if (hasFocus) {
@@ -62,13 +68,13 @@ class _IconicTextFieldState extends State<IconicTextField> {
                           padding: const EdgeInsets.symmetric(horizontal: 10),
                           child: Icon(
                             widget.prefixIcon,
-                            size: 40,
+                            size: 40 * widget.iconScaling,
                             color: Theme.of(context).primaryColor,
                           )),
                       suffixIcon: widget.type == FieldType.password
                           ? IconButton(
                               icon: Icon(
-                                  _passwordVisible
+                                  !_passwordVisible
                                       ? Icons.visibility
                                       : Icons.visibility_off,
                                   color: Theme.of(context).primaryColor),
@@ -80,18 +86,18 @@ class _IconicTextFieldState extends State<IconicTextField> {
                             )
                           : null,
                       labelText: _labelText,
-                      labelStyle: const TextStyle(
+                      labelStyle: TextStyle(
                           fontFamily: 'Poppins',
-                          fontSize: 25,
+                          fontSize: 25 * widget.textScaling,
                           fontWeight: FontWeight.w400,
-                          color: Color(0xFF666161)),
+                          color: const Color(0xFF666161)),
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       filled: true,
                       fillColor: Colors.white,
                       enabledBorder: const OutlineInputBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20.0)),
                           borderSide: BorderSide(color: Colors.white))),
-                  style: const TextStyle(fontSize: 25),
+                  style: TextStyle(fontSize: 25 * widget.textScaling),
                 ))));
   }
 }

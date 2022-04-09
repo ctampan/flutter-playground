@@ -9,17 +9,14 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF2DB6A3),
-      body: SingleChildScrollView(
-        child: Center(
+      backgroundColor: Theme.of(context).primaryColorDark,
+      body: Center(
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 100,
-              ),
               Image.asset(
-                'assets/images/login_illustration.png',
+                'assets/images/register_illustration.png',
                 width: 325,
               ),
               const SizedBox(

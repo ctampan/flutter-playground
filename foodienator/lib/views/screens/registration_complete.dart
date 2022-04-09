@@ -14,7 +14,7 @@ class RegistrationCompleteScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                'assets/images/registration_complete.png',
+                'assets/images/registration_complete_illustration.png',
                 width: 275,
               ),
               const SizedBox(
