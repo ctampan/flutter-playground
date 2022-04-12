@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/change_theme_provider.dart';
 import '../widgets/app_bar.dart';
 
-class CarDetailPage extends StatefulWidget {
+class CarDetailPage extends ConsumerStatefulWidget {
   const CarDetailPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  State<StatefulWidget> createState() => _CarDetailState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _CarDetailState();
 }
 
-class _CarDetailState extends State<CarDetailPage> {
+class _CarDetailState extends ConsumerState<CarDetailPage> {
   bool _isStarred = false;
 
   void _toggleStarred() {
@@ -22,9 +24,13 @@ class _CarDetailState extends State<CarDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isDarkMode = ref.read(changeTheme).darkMode;
+    final theme = Theme.of(context);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: appBarWidget(context, widget.title),
+      backgroundColor: theme.backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -58,18 +64,16 @@ class _CarDetailState extends State<CarDetailPage> {
                                     "Sport Car",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .headlineMedium
+                                        .headline3
                                         ?.copyWith(
-                                            fontWeight: FontWeight.w600,
                                             color: Colors.white),
                                   ),
                                   Text(
                                     "\$55/day",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .titleMedium
+                                        .subtitle1
                                         ?.copyWith(
-                                            fontWeight: FontWeight.w400,
                                             color: Colors.white),
                                   )
                                 ],
@@ -96,15 +100,14 @@ class _CarDetailState extends State<CarDetailPage> {
                             ],
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 40,
                           ),
                           Text(
                             "Description",
                             style: Theme.of(context)
                                 .textTheme
-                                .titleLarge
+                                .headline6
                                 ?.copyWith(
-                                    fontWeight: FontWeight.w600,
                                     color: Colors.white),
                           ),
                           const SizedBox(
@@ -114,9 +117,9 @@ class _CarDetailState extends State<CarDetailPage> {
                             "Wanna ride the coolest sport car in the world?",
                             style: Theme.of(context)
                                 .textTheme
-                                .titleSmall
+                                .bodyText1
                                 ?.copyWith(
-                                    fontWeight: FontWeight.w400,
+                                    fontSize: 15,
                                     color: Colors.white),
                           ),
                           const Spacer(),
@@ -135,10 +138,7 @@ class _CarDetailState extends State<CarDetailPage> {
                                   'Book Now',
                                   style: Theme.of(context)
                                       .textTheme
-                                      .titleMedium
-                                      ?.copyWith(
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black),
+                                      .button?.copyWith(color: Colors.black),
                                 ),
                               ))
                         ],

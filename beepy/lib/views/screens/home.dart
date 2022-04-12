@@ -1,18 +1,24 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../providers/change_theme_provider.dart';
 import '../widgets/app_bar.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends ConsumerWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isDarkMode = ref.read(changeTheme).darkMode;
+    final theme = Theme.of(context);
+
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: appBarWidget(context, title),
+      backgroundColor: theme.backgroundColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -22,25 +28,31 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 30),
               child: Text(
                 "Find Your Vehicle",
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall
-                    ?.copyWith(fontWeight: FontWeight.w600),
+                style: theme.textTheme.headline4,
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 50),
               child: Text(
                 "Find the perfect vehicle for every occasion!",
                 textAlign: TextAlign.center,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium
-                    ?.copyWith(fontWeight: FontWeight.w400),
+                style: theme.textTheme.bodyText1,
               ),
             ),
             Padding(
-                padding: const EdgeInsets.only(top: 50),
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: CupertinoSwitch(
+                  value: isDarkMode,
+                  onChanged: (v) {
+                    if (isDarkMode) {
+                      ref.read(changeTheme.notifier).enableLightMode();
+                    } else {
+                      ref.read(changeTheme.notifier).enableDarkMode();
+                    }
+                  }),
+            ),
+            Padding(
+                padding: const EdgeInsets.only(top: 25),
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: 50,
@@ -48,19 +60,13 @@ class HomePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
-                        primary: Colors.orange,
-                        onPrimary: Colors.white,
+                        primary: theme.primaryColor,
                       ),
                       onPressed: () =>
                           Navigator.pushNamed(context, '/carDetail'),
                       child: Text(
                         'Continue',
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                                fontWeight: FontWeight.w600,
-                                color: Colors.white),
+                        style: theme.textTheme.button,
                       ),
                     )))
           ],

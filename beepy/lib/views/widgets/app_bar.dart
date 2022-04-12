@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
 
 AppBar appBarWidget(BuildContext context, String title) {
+  final theme = Theme.of(context);
   return AppBar(
     automaticallyImplyLeading: false,
     title: Text(
       title,
-      style: Theme.of(context)
+      style: theme
           .textTheme
-          .titleLarge
-          ?.copyWith(fontWeight: FontWeight.w600),
+          .headline6,
     ),
     centerTitle: true,
-    foregroundColor: Colors.black,
     backgroundColor: Colors.transparent,
     elevation: 0.0,
     leading: Navigator.canPop(context)
         ? IconButton(
-            icon: const Icon(
+            icon: Icon(
               Icons.arrow_back_ios,
-              color: Colors.black,
+              color: theme.backgroundColor == Colors.white ? Colors.black : Colors.white,
             ),
             onPressed: () => Navigator.of(context).pop(),
           )

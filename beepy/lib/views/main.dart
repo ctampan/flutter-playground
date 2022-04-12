@@ -1,26 +1,28 @@
+import 'package:beepy/views/providers/change_theme_provider.dart';
 import 'package:beepy/views/screens/car_detail.dart';
 import 'package:beepy/views/screens/home.dart';
+import 'package:beepy/views/utilities/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      const ProviderScope(child: MyApp())
+  );
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final currentTheme = ref.watch(changeTheme);
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Beepy',
-      theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme(Theme.of(context).textTheme),
-          primarySwatch: Colors.blue,
-          pageTransitionsTheme: const PageTransitionsTheme(builders: {
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-          })),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: currentTheme.darkMode ? ThemeMode.dark : ThemeMode.light,
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
         '/': (context) => const HomePage(title: 'Beepy'),
