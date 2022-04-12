@@ -1,3 +1,4 @@
+import 'package:beepy/views/screens/car_cards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -8,6 +9,7 @@ import '../widgets/app_bar.dart';
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
 
+  static const routeName = '/';
   final String title;
 
   @override
@@ -43,6 +45,7 @@ class HomePage extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(vertical: 10),
               child: CupertinoSwitch(
                   value: isDarkMode,
+                  activeColor: const Color(0xFFFA7F35),
                   onChanged: (v) {
                     if (isDarkMode) {
                       ref.read(changeTheme.notifier).enableLightMode();
@@ -63,7 +66,7 @@ class HomePage extends ConsumerWidget {
                         primary: theme.primaryColor,
                       ),
                       onPressed: () =>
-                          Navigator.pushNamed(context, '/carDetail'),
+                          Navigator.pushNamed(context, CarCardsPage.routeName),
                       child: Text(
                         'Continue',
                         style: theme.textTheme.button,

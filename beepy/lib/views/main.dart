@@ -1,4 +1,6 @@
+import 'package:beepy/views/providers/cars_provider.dart';
 import 'package:beepy/views/providers/change_theme_provider.dart';
+import 'package:beepy/views/screens/car_cards.dart';
 import 'package:beepy/views/screens/car_detail.dart';
 import 'package:beepy/views/screens/home.dart';
 import 'package:beepy/views/utilities/app_theme.dart';
@@ -23,10 +25,11 @@ class MyApp extends ConsumerWidget {
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: currentTheme.darkMode ? ThemeMode.dark : ThemeMode.light,
-      initialRoute: '/',
+      initialRoute: HomePage.routeName,
       routes: <String, WidgetBuilder>{
-        '/': (context) => const HomePage(title: 'Beepy'),
-        '/carDetail': (context) => const CarDetailPage(title: 'Cars'),
+        HomePage.routeName: (context) => const HomePage(title: 'Beepy'),
+        CarCardsPage.routeName: (context) => const CarCardsPage(title: 'Cars'),
+        CarDetailPage.routeName: (context) => const CarDetailPage(title: 'Cars'),
       },
     );
   }
